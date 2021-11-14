@@ -6,11 +6,6 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller{
-    
-    /*public function __construct(){
-
-        $this->middleware(['auth']);
-    }*/
 
     public function index(){
 
@@ -21,12 +16,19 @@ class PostController extends Controller{
         ]);
     }
 
+    public function show(Post $post){
+
+        return view('posts.show', [
+            'post'=> $post
+        ]);
+    } 
+
     public function store(Request $request, Post $post){
 
         if($post->likedBy($request -> user())){
             return \response(null, 409);
         }
-
+        
         $this->validate($request, [
             'body' => 'required'
         ]);
