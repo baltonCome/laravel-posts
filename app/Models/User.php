@@ -53,8 +53,18 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function comments(){
+
+        return $this->hasMany(Comment::class);
+    }
+
     public function receivedLikes(){
 
         return $this->hasManyThrough(Like::class, Post::class);
+    }
+
+    public function receivedComments(){
+
+        return $this->hasManyThrough(Comment::class, Post::class);
     }
 }

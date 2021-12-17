@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\UserPostController;
+use App\Http\Controllers\PostCommentController;
+use App\Http\controllers\UserController;
 
 Route::get('/', function(){
     return view('home');
@@ -32,3 +34,12 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 
 Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
 Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes');
+
+//Routes Below were not implemented
+
+Route::post('/post/{comment}/comments', [PostCommentController::class, 'store'])->name('posts.comments');
+Route::delete('/post/{comment}/comments', [PostCommentController::class, 'destroy'])->name('posts.comments');
+Route::get('/posts/{post}/comments', [PostCommentController::class, 'index'])->name('posts.comments');
+
+Route::put('/update/{id}', [UserController::class, 'update'])->name('update');
+Route::get('/update', [UserController::class, 'index'])->name('edit');

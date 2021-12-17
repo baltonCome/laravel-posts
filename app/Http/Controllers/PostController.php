@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller{
 
+
+    public function __construct(){
+
+        
+    }
+
     public function index(){
 
         $posts = Post::orderBy('created_at', 'desc')->with(['user', 'likes'])->paginate(20);
